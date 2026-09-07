@@ -247,6 +247,7 @@ function renderUnderstand(unit) {
       <span class="block-label">Выбранное значение</span>
       <strong>${escapeHtml(unit.definition)}</strong>
       <span class="source-line"><span class="source-badge">Словарь</span>${escapeHtml(unit.source)}</span>
+      <a class="dictionary-link" href="${dictionaryUrl(unit)}" target="_blank" rel="noopener noreferrer" aria-label="Открыть ${escapeHtml(unit.expression)} в Wiktionary в новой вкладке">Открыть «${escapeHtml(unit.expression)}» в Wiktionary ↗</a>
     </section>
     <section class="info-block">
       <span class="block-label">Немецкая модель</span>
@@ -298,7 +299,6 @@ function renderCard(unit) {
         </div>
         <div class="audio-status" data-audio-status>Немецкий системный голос · de-DE</div>
       `}
-      <a class="dictionary-link" href="${dictionaryUrl(unit)}" target="_blank" rel="noopener noreferrer" aria-label="Открыть ${escapeHtml(unit.expression)} в Wiktionary в новой вкладке">Открыть «${escapeHtml(unit.expression)}» в Wiktionary ↗</a>
     </section>
     ${isCardEditing ? `
       <div class="panel-actions">

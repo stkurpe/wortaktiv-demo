@@ -518,14 +518,14 @@ main { padding: 24px clamp(14px, 3vw, 34px) 40px; }
 .dictionary-link {
   display: inline-flex;
   margin-top: 14px;
-  color: #9de9d3;
+  color: var(--green-strong);
   font-size: 12px;
   font-weight: 700;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
-.dictionary-link:hover { color: #d2fff2; }
+.dictionary-link:hover { color: var(--green); }
 
 .practice-prompt { margin: 0 0 10px; line-height: 1.55; }
 
