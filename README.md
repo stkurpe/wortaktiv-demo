@@ -22,7 +22,7 @@
 
 ## GitHub Pages
 
-Workflow в `.github/workflows/pages.yml` публикует содержимое репозитория как статический GitHub Pages site при push в `main`.
+GitHub Pages публикует статические файлы непосредственно из корня ветки `main`.
 
 ## Лицензия прототипа
 
