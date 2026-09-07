@@ -64,11 +64,84 @@ const UNIT_LIBRARY = {
   }
 };
 
+const UNIT_LOCALIZED_CONTENT = {
+  en: {
+    anspruch: {
+      translationMarked: "Daily practice <mark class=\"target-highlight\">takes time</mark>, but leads to better results in the long run.",
+      definition: "to take or require time or resources",
+      source: "Wiktionary · selected dictionary sense",
+      examples: [
+        ["Die Reparatur wird drei Stunden in Anspruch nehmen.", "The repair will take three hours."],
+        ["Die Vorbereitung nahm viel Zeit in Anspruch.", "The preparation took a lot of time."]
+      ],
+      practicePrompt: "Say in German: “The repair will take three hours.”",
+      practiceHint: "Die Reparatur … drei Stunden in Anspruch …"
+    },
+    zuverlaessig: {
+      translationMarked: "A <mark class=\"target-highlight\">reliable</mark> learning plan does not have to be complicated.",
+      definition: "reliable; someone or something that can be depended on",
+      source: "Wiktionary · adjective",
+      examples: [
+        ["Sie ist sehr zuverlässig.", "She is very reliable."],
+        ["Wir brauchen eine zuverlässige Lösung.", "We need a reliable solution."]
+      ],
+      practicePrompt: "Complete: Wir brauchen eine ___ Lösung.",
+      practiceHint: "It starts with zuver…"
+    },
+    auseinandersetzen: {
+      translationMarked: "It is helpful to <mark class=\"target-highlight\">engage actively with new expressions</mark>.",
+      definition: "to examine or engage with a topic in detail",
+      source: "Wiktionary · reflexive separable verb",
+      examples: [
+        ["Wir setzen uns mit dem Problem auseinander.", "We examine the problem in detail."],
+        ["Sie hat sich mit der Kritik auseinandergesetzt.", "She engaged with the criticism."]
+      ],
+      practicePrompt: "Say in German: “I am examining this problem.”",
+      practiceHint: "Ich setze mich mit diesem Problem …"
+    }
+  },
+  de: {
+    anspruch: {
+      translationMarked: "Das tägliche Üben <mark class=\"target-highlight\">braucht zwar Zeit</mark>, führt aber langfristig zu besseren Ergebnissen.",
+      definition: "Zeit oder Ressourcen benötigen; beanspruchen",
+      source: "Wiktionary · ausgewählte Bedeutung",
+      examples: [
+        ["Die Reparatur wird drei Stunden in Anspruch nehmen.", "Die Reparatur wird drei Stunden dauern."],
+        ["Die Vorbereitung nahm viel Zeit in Anspruch.", "Für die Vorbereitung wurde viel Zeit benötigt."]
+      ],
+      practicePrompt: "Formulieren Sie mit „in Anspruch nehmen“: Die Reparatur dauert drei Stunden.",
+      practiceHint: "Die Reparatur … drei Stunden in Anspruch …"
+    },
+    zuverlaessig: {
+      translationMarked: "Ein <mark class=\"target-highlight\">verlässlicher</mark> Lernplan muss nicht kompliziert sein.",
+      definition: "verlässlich; so, dass man sich darauf verlassen kann",
+      source: "Wiktionary · Adjektiv",
+      examples: [
+        ["Sie ist sehr zuverlässig.", "Auf sie kann man sich verlassen."],
+        ["Wir brauchen eine zuverlässige Lösung.", "Wir brauchen eine verlässliche Lösung."]
+      ],
+      practicePrompt: "Ergänzen Sie: Wir brauchen eine ___ Lösung.",
+      practiceHint: "Das Wort beginnt mit zuver…"
+    },
+    auseinandersetzen: {
+      translationMarked: "Hilfreich ist es, <mark class=\"target-highlight\">sich intensiv mit neuen Ausdrücken zu beschäftigen</mark>.",
+      definition: "sich ausführlich mit einem Thema beschäftigen",
+      source: "Wiktionary · reflexives trennbares Verb",
+      examples: [
+        ["Wir setzen uns mit dem Problem auseinander.", "Wir beschäftigen uns ausführlich mit dem Problem."],
+        ["Sie hat sich mit der Kritik auseinandergesetzt.", "Sie hat die Kritik gründlich geprüft."]
+      ],
+      practicePrompt: "Formulieren Sie mit „sich auseinandersetzen“: Ich beschäftige mich mit diesem Problem.",
+      practiceHint: "Ich setze mich mit diesem Problem …"
+    }
+  }
+};
+
 const STORAGE_KEY = "wortaktiv-demo-v2";
 const STAGES = ["understand", "card", "practice", "review"];
 const TRANSLATIONS = {
   ru: {
-    mainNav: "Основные разделы", article: "Статья", statistics: "Статистика", interfaceLanguage: "Язык интерфейса", resetDemo: "Сбросить демо",
+    mainNav: "Основные разделы", article: "Статья", statistics: "Статистика", interfaceLanguage: "Базовый язык интерфейса и карточек", baseLanguageShort: "Язык карточки", resetDemo: "Сбросить демо",
     articleMeta: "Deutsch · B1–B2 · 4 минуты", activeTimeNote: "Время считается только при активной работе", today: "Сегодня", tryIt: "Попробуйте",
     selectionHelp: "Выделите фрагмент текста или нажмите на цветную учебную единицу.", demoArticle: "Учебный демонстрационный текст", localContext: "Контекст обрабатывается локально",
     closePanel: "Свернуть панель", stageNav: "Этапы работы с единицей", understand: "Понять", card: "Карточка", practice: "Практика", review: "Повтор",
@@ -99,7 +172,7 @@ const TRANSLATIONS = {
     activityUnderstand: "Разбор", activityCard: "Карточки", activityPractice: "Практика", activityReview: "Повтор", exportStats: "Экспорт статистики", exportReady: "Файл статистики скачан.", exportError: "Не удалось создать файл.", pdfTitle: "Отчёт WortAktiv", generated: "Создан", hints: "Подсказки"
   },
   en: {
-    mainNav: "Main sections", article: "Article", statistics: "Statistics", interfaceLanguage: "Interface language", resetDemo: "Reset demo",
+    mainNav: "Main sections", article: "Article", statistics: "Statistics", interfaceLanguage: "Base language for interface and cards", baseLanguageShort: "Card language", resetDemo: "Reset demo",
     articleMeta: "German · B1–B2 · 4 minutes", activeTimeNote: "Time is counted only while you are active", today: "Today", tryIt: "Try it",
     selectionHelp: "Select a passage or click a highlighted learning unit.", demoArticle: "Learning demo text", localContext: "Context is processed locally",
     closePanel: "Close panel", stageNav: "Learning stages", understand: "Understand", card: "Card", practice: "Practice", review: "Review",
@@ -130,7 +203,7 @@ const TRANSLATIONS = {
     activityUnderstand: "Analysis", activityCard: "Cards", activityPractice: "Practice", activityReview: "Review", exportStats: "Export statistics", exportReady: "Statistics file downloaded.", exportError: "Could not create the file.", pdfTitle: "WortAktiv report", generated: "Generated", hints: "Hints"
   },
   de: {
-    mainNav: "Hauptbereiche", article: "Artikel", statistics: "Statistik", interfaceLanguage: "Sprache der Oberfläche", resetDemo: "Demo zurücksetzen",
+    mainNav: "Hauptbereiche", article: "Artikel", statistics: "Statistik", interfaceLanguage: "Basissprache für Oberfläche und Karten", baseLanguageShort: "Kartensprache", resetDemo: "Demo zurücksetzen",
     articleMeta: "Deutsch · B1–B2 · 4 Minuten", activeTimeNote: "Zeit wird nur bei aktiver Nutzung gezählt", today: "Heute", tryIt: "Probieren Sie es aus",
     selectionHelp: "Markieren Sie einen Textabschnitt oder klicken Sie auf eine hervorgehobene Lerneinheit.", demoArticle: "Lerntext zur Demonstration", localContext: "Kontext wird lokal verarbeitet",
     closePanel: "Panel schließen", stageNav: "Lernschritte", understand: "Verstehen", card: "Karte", practice: "Üben", review: "Wiederholen",
@@ -237,7 +310,38 @@ function escapeHtml(value) {
 }
 
 function getUnit() {
-  return UNIT_LIBRARY[state.selectedUnitId] || UNIT_LIBRARY.anspruch;
+  const unit = UNIT_LIBRARY[state.selectedUnitId] || UNIT_LIBRARY.anspruch;
+  if (unit.id === "custom" && state.locale !== "ru") return localizedCustomUnit(unit);
+  const localized = UNIT_LOCALIZED_CONTENT[state.locale]?.[unit.id];
+  return localized ? { ...unit, ...localized } : unit;
+}
+
+function localizedCustomUnit(unit) {
+  const start = unit.expression.slice(0, Math.max(2, Math.ceil(unit.expression.length / 3)));
+  if (state.locale === "de") {
+    return {
+      ...unit,
+      translationMarked: `<mark class="target-highlight">Demo-Erklärung</mark>: Wörterbuch oder KI präzisieren die Bedeutung der Auswahl.`,
+      definition: "benutzerdefinierte Auswahl; Bedeutung muss bestätigt werden",
+      grammar: "Die automatische Analyse wird nach der Wörterbuchsuche ergänzt.",
+      source: "Ausgangstext · Demo-Ersatz",
+      examples: [[unit.sentence, "Die Erläuterung des Beispiels erscheint nach der Bestätigung."]],
+      practicePrompt: `Geben Sie die Auswahl erneut ein: „${unit.expression}“.`,
+      practiceHint: `Anfang: ${start}…`,
+      nextContext: `Ein neuer Kontext für „${unit.expression}“ wird bei der nächsten Begegnung ergänzt.`
+    };
+  }
+  return {
+    ...unit,
+    translationMarked: `<mark class="target-highlight">Demo explanation</mark>: a dictionary or AI will clarify the selected meaning.`,
+    definition: "custom selection; the meaning needs confirmation",
+    grammar: "Automatic analysis will be added after the dictionary lookup.",
+    source: "Source text · demo fallback",
+    examples: [[unit.sentence, "The example explanation will appear after confirmation."]],
+    practicePrompt: `Enter the selected text again: “${unit.expression}”.`,
+    practiceHint: `Starts with: ${start}…`,
+    nextContext: `A new context for “${unit.expression}” will be added at the next encounter.`
+  };
 }
 
 function t(key, values = {}) {
@@ -275,7 +379,15 @@ function getDefaultCardText(unit, side) {
 }
 
 function getCardText(unit, side) {
-  return state.cardEdits?.[unit.id]?.[side] ?? getDefaultCardText(unit, side);
+  const edits = state.cardEdits?.[unit.id];
+  const localizedEdit = edits?.[state.locale]?.[side];
+  const legacyRussianEdit = state.locale === "ru" && typeof edits?.[side] === "string" ? edits[side] : undefined;
+  return localizedEdit ?? legacyRussianEdit ?? getDefaultCardText(unit, side);
+}
+
+function hasCardEdits(unitId, locale = state.locale) {
+  const edits = state.cardEdits?.[unitId];
+  return Boolean(edits?.[locale] || (locale === "ru" && typeof edits?.front === "string"));
 }
 
 function renderCardText(value) {
@@ -397,7 +509,7 @@ function renderCard(unit) {
   const isSaved = state.savedUnits.includes(unit.id);
   const frontText = getCardText(unit, "front");
   const backText = getCardText(unit, "back");
-  const hasEdits = Boolean(state.cardEdits?.[unit.id]);
+  const hasEdits = hasCardEdits(unit.id);
   panelKicker.textContent = t("cardKicker");
   panelContent.innerHTML = `
     <div class="card-heading">
@@ -457,7 +569,8 @@ function saveCardEdits() {
     return;
   }
   state.cardEdits ||= {};
-  state.cardEdits[unit.id] = { front, back };
+  state.cardEdits[unit.id] ||= {};
+  state.cardEdits[unit.id][state.locale] = { front, back };
   isCardEditing = false;
   saveState();
   renderCard(unit);
@@ -466,7 +579,15 @@ function saveCardEdits() {
 
 function resetCardEdits() {
   const unit = getUnit();
-  if (state.cardEdits?.[unit.id]) delete state.cardEdits[unit.id];
+  const edits = state.cardEdits?.[unit.id];
+  if (edits) {
+    delete edits[state.locale];
+    if (state.locale === "ru") {
+      delete edits.front;
+      delete edits.back;
+    }
+    if (Object.keys(edits).length === 0) delete state.cardEdits[unit.id];
+  }
   isCardEditing = false;
   saveState();
   renderCard(unit);
