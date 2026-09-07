@@ -14,7 +14,7 @@
   <meta name="twitter:title" content="WortAktiv — интерактивный прототип">
   <meta name="twitter:description" content="Контекстные карточки, произношение, практика и локальная статистика.">
   <title>WortAktiv — интерактивный прототип</title>
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
   <header class="app-header">
@@ -24,14 +24,22 @@
       <small>prototype</small>
     </a>
 
-    <nav class="main-nav" aria-label="Основные разделы">
-      <button class="nav-button is-active" type="button" data-view="article" aria-pressed="true">Статья</button>
-      <button class="nav-button" type="button" data-view="statistics" aria-pressed="false">Статистика</button>
+    <nav class="main-nav" aria-label="Основные разделы" data-i18n-aria="mainNav">
+      <button class="nav-button is-active" type="button" data-view="article" aria-pressed="true" data-i18n="article">Статья</button>
+      <button class="nav-button" type="button" data-view="statistics" aria-pressed="false" data-i18n="statistics">Статистика</button>
     </nav>
 
     <div class="header-actions">
       <span class="anki-status"><span class="status-dot" aria-hidden="true"></span>Anki demo</span>
-      <button class="quiet-button" id="reset-demo" type="button">Сбросить демо</button>
+      <label class="language-picker">
+        <span class="sr-only" data-i18n="interfaceLanguage">Язык интерфейса</span>
+        <select id="interface-language" aria-label="Язык интерфейса">
+          <option value="ru">RU</option>
+          <option value="en">EN</option>
+          <option value="de">DE</option>
+        </select>
+      </label>
+      <button class="quiet-button" id="reset-demo" type="button" data-i18n="resetDemo">Сбросить демо</button>
     </div>
   </header>
 
@@ -40,10 +48,10 @@
       <div class="reading-column">
         <div class="article-toolbar">
           <div>
-            <span class="eyebrow">Deutsch · B1–B2 · 4 минуты</span>
-            <span class="local-note">Время считается только при активной работе</span>
+            <span class="eyebrow" data-i18n="articleMeta">Deutsch · B1–B2 · 4 минуты</span>
+            <span class="local-note" data-i18n="activeTimeNote">Время считается только при активной работе</span>
           </div>
-          <div class="session-time" aria-live="polite">Сегодня <strong id="header-today-time">34 мин</strong></div>
+          <div class="session-time" aria-live="polite"><span data-i18n="today">Сегодня</span> <strong id="header-today-time">34 мин</strong></div>
         </div>
 
         <article class="reading-article" id="article">
@@ -55,8 +63,8 @@
           <p>Ein <mark class="study-target" data-unit-id="zuverlaessig" role="button">zuverlässiger</mark> Lernplan muss nicht kompliziert sein. Entscheidend ist, dass er zum Alltag passt. Wer jeden Morgen einen kurzen Artikel liest und abends einige Karten wiederholt, begegnet wichtigen Wörtern immer wieder.</p>
 
           <aside class="article-callout">
-            <strong>Probieren Sie es aus</strong>
-            <span>Markieren Sie einen Textabschnitt oder klicken Sie auf eine farbig markierte Einheit.</span>
+            <strong data-i18n="tryIt">Попробуйте</strong>
+            <span data-i18n="selectionHelp">Выделите фрагмент текста или нажмите на цветную учебную единицу.</span>
           </aside>
 
           <p>Hilfreich ist es außerdem, <mark class="study-target" data-unit-id="auseinandersetzen" role="button">sich aktiv mit neuen Ausdrücken auseinanderzusetzen</mark>. Man kann ein Beispiel verändern, eine persönliche Antwort formulieren oder den Ausdruck laut nachsprechen.</p>
@@ -67,8 +75,8 @@
         </article>
 
         <footer class="article-footer">
-          <span>Учебный демонстрационный текст</span>
-          <span>Контекст обрабатывается локально</span>
+          <span data-i18n="demoArticle">Учебный демонстрационный текст</span>
+          <span data-i18n="localContext">Контекст обрабатывается локально</span>
         </footer>
       </div>
 
@@ -78,14 +86,14 @@
             <span class="eyebrow" id="panel-kicker">UNDERSTAND · словарь + контекст</span>
             <h2 id="panel-unit-title">etwas in Anspruch nehmen</h2>
           </div>
-          <button class="icon-button" id="close-panel" type="button" aria-label="Свернуть панель">×</button>
+          <button class="icon-button" id="close-panel" type="button" aria-label="Свернуть панель" data-i18n-aria="closePanel">×</button>
         </div>
 
-        <nav class="stage-nav" aria-label="Этапы работы с единицей">
-          <button type="button" data-stage="understand" aria-pressed="true"><span>1</span>Понять</button>
-          <button type="button" data-stage="card" aria-pressed="false"><span>2</span>Карточка</button>
-          <button type="button" data-stage="practice" aria-pressed="false"><span>3</span>Практика</button>
-          <button type="button" data-stage="review" aria-pressed="false"><span>4</span>Повтор</button>
+        <nav class="stage-nav" aria-label="Этапы работы с единицей" data-i18n-aria="stageNav">
+          <button type="button" data-stage="understand" aria-pressed="true"><span>1</span><b data-i18n="understand">Понять</b></button>
+          <button type="button" data-stage="card" aria-pressed="false"><span>2</span><b data-i18n="card">Карточка</b></button>
+          <button type="button" data-stage="practice" aria-pressed="false"><span>3</span><b data-i18n="practice">Практика</b></button>
+          <button type="button" data-stage="review" aria-pressed="false"><span>4</span><b data-i18n="review">Повтор</b></button>
         </nav>
 
         <div class="panel-content" id="panel-content" aria-live="polite"></div>
@@ -95,32 +103,38 @@
     <section class="statistics-view" id="statistics-view" hidden aria-label="Статистика обучения">
       <header class="stats-header">
         <div>
-          <span class="eyebrow">Локальная учебная аналитика</span>
-          <h1>Статистика обучения</h1>
-          <p>Демо-данные объединяются с действиями текущей сессии.</p>
+          <span class="eyebrow" data-i18n="localAnalytics">Локальная учебная аналитика</span>
+          <h1 data-i18n="learningStats">Статистика обучения</h1>
+          <p data-i18n="statsIntro">Демо-данные объединяются с действиями текущей сессии.</p>
         </div>
-        <div class="period-control" aria-label="Период статистики">
-          <button type="button" data-period="7" aria-pressed="true">7 дней</button>
-          <button type="button" data-period="30" aria-pressed="false">30 дней</button>
-          <button type="button" data-period="all" aria-pressed="false">Всё время</button>
+        <div class="stats-controls">
+          <div class="period-control" aria-label="Период статистики">
+            <button type="button" data-period="7" aria-pressed="true" data-i18n="days7">7 дней</button>
+            <button type="button" data-period="30" aria-pressed="false" data-i18n="days30">30 дней</button>
+            <button type="button" data-period="all" aria-pressed="false" data-i18n="allTime">Всё время</button>
+          </div>
+          <div class="export-actions" aria-label="Экспорт статистики" data-i18n-aria="exportStats">
+            <button type="button" id="export-json">↓ JSON</button>
+            <button type="button" id="export-pdf">↓ PDF</button>
+          </div>
         </div>
       </header>
 
       <div class="summary-grid">
         <article class="summary-item">
-          <span>Сегодня</span>
+          <span data-i18n="today">Сегодня</span>
           <strong id="stats-today">34 мин</strong>
-          <small>активного времени</small>
+          <small data-i18n="activeTime">активного времени</small>
         </article>
         <article class="summary-item">
-          <span>Учебных единиц</span>
+          <span data-i18n="learningUnits">Учебных единиц</span>
           <strong id="stats-units">11</strong>
-          <small>за выбранный период</small>
+          <small data-i18n="selectedPeriod">за выбранный период</small>
         </article>
         <article class="summary-item">
-          <span>Попыток</span>
+          <span data-i18n="attempts">Попыток</span>
           <strong id="stats-attempts">23</strong>
-          <small>письменно и устно</small>
+          <small data-i18n="writtenSpoken">письменно и устно</small>
         </article>
       </div>
 
@@ -128,10 +142,10 @@
         <section class="stats-section daily-section">
           <div class="section-heading">
             <div>
-              <h2>Время по дням</h2>
+              <h2 data-i18n="timeByDay">Время по дням</h2>
               <p id="period-total">Всего за период: 2 ч 41 мин</p>
             </div>
-            <span class="scope-label">Только активность</span>
+            <span class="scope-label" data-i18n="activityOnly">Только активность</span>
           </div>
           <div class="day-chart" id="day-chart" role="img" aria-label="Активное время по дням"></div>
           <div class="activity-breakdown" id="activity-breakdown" aria-label="Распределение времени"></div>
@@ -140,13 +154,13 @@
         <section class="stats-section ranking-section">
           <div class="section-heading ranking-heading">
             <div>
-              <h2>Самые сложные</h2>
-              <p>Рейтинг объясняет, что именно требует повторения.</p>
+              <h2 data-i18n="hardest">Самые сложные</h2>
+              <p data-i18n="rankingHelp">Рейтинг объясняет, что именно требует повторения.</p>
             </div>
             <div class="sort-control" aria-label="Сортировка единиц">
-              <button type="button" data-sort="difficulty" aria-pressed="true">Сложность</button>
-              <button type="button" data-sort="time" aria-pressed="false">Время</button>
-              <button type="button" data-sort="errors" aria-pressed="false">Ошибки</button>
+              <button type="button" data-sort="difficulty" aria-pressed="true" data-i18n="difficulty">Сложность</button>
+              <button type="button" data-sort="time" aria-pressed="false" data-i18n="time">Время</button>
+              <button type="button" data-sort="errors" aria-pressed="false" data-i18n="errors">Ошибки</button>
             </div>
           </div>
           <div class="unit-ranking" id="unit-ranking"></div>
@@ -157,10 +171,10 @@
 
   <div class="selection-toolbar" id="selection-toolbar" hidden>
     <span id="selection-label"></span>
-    <button type="button" id="analyze-selection">Разобрать</button>
+    <button type="button" id="analyze-selection" data-i18n="analyze">Разобрать</button>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
