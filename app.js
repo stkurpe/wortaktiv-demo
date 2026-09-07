@@ -78,6 +78,7 @@ function createInitialState() {
     selectedUnitId: "anspruch",
     stage: "understand",
     cardSide: "front",
+    cardEdits: {},
     savedUnits: [],
     contexts: { anspruch: 2, zuverlaessig: 1, auseinandersetzen: 1 },
     todaySeconds: 34 * 60,
@@ -109,6 +110,7 @@ let selectedText = "";
 let lastActivityAt = Date.now();
 let toastTimer;
 let persistTicks = 0;
+let isCardEditing = false;
 
 const articleView = document.querySelector("#article-view");
 const statisticsView = document.querySelector("#statistics-view");
@@ -134,6 +136,38 @@ function escapeHtml(value) {
 
 function getUnit() {
   return UNIT_LIBRARY[state.selectedUnitId] || UNIT_LIBRARY.anspruch;
+}
+
+function markedHtmlToText(value) {
+  return String(value)
+    .replace(/<mark class="target-highlight">/g, "**")
+    .replace(/<\/mark>/g, "**")
+    .replace(/<br\s*\/?>/gi, "\n");
+}
+
+function getDefaultCardText(unit, side) {
+  if (side === "front") return markedHtmlToText(unit.sentenceMarked);
+  const examples = unit.examples.map(pair => `${pair[0]}\n${pair[1]}`).join("\n\n");
+  return [
+    markedHtmlToText(unit.sentenceMarked),
+    markedHtmlToText(unit.translationMarked),
+    `${unit.expression} — ${unit.definition}`,
+    examples
+  ].join("\n\n");
+}
+
+function getCardText(unit, side) {
+  return state.cardEdits?.[unit.id]?.[side] ?? getDefaultCardText(unit, side);
+}
+
+function renderCardText(value) {
+  return escapeHtml(value)
+    .replace(/\*\*(.+?)\*\*/g, '<mark class="target-highlight">$1</mark>')
+    .replace(/\n/g, "<br>");
+}
+
+function dictionaryUrl(unit) {
+  return `https://de.wiktionary.org/wiki/Special:Search?search=${encodeURIComponent(unit.expression)}`;
 }
 
 function pluralErrors(count) {
@@ -166,6 +200,7 @@ function setCurrentUnit(unitId) {
   state.selectedUnitId = unitId;
   state.stage = "understand";
   state.cardSide = "front";
+  isCardEditing = false;
   learningPanel.classList.remove("is-collapsed");
   document.querySelectorAll(".study-target").forEach(element => {
     element.classList.toggle("is-current", element.dataset.unitId === unitId);
@@ -177,6 +212,7 @@ function setCurrentUnit(unitId) {
 function setStage(stage) {
   if (!STAGES.includes(stage)) return;
   state.stage = stage;
+  if (stage !== "card") isCardEditing = false;
   document.querySelectorAll("[data-stage]").forEach(button => {
     button.setAttribute("aria-pressed", String(button.dataset.stage === stage));
   });
@@ -230,32 +266,83 @@ function renderUnderstand(unit) {
 function renderCard(unit) {
   const isFront = state.cardSide === "front";
   const isSaved = state.savedUnits.includes(unit.id);
+  const frontText = getCardText(unit, "front");
+  const backText = getCardText(unit, "back");
+  const hasEdits = Boolean(state.cardEdits?.[unit.id]);
   panelKicker.textContent = "CARD · формат Anki";
   panelContent.innerHTML = `
-    <h3>Предпросмотр карточки</h3>
-    <p>Формат фиксирован; оформление может меняться.</p>
+    <div class="card-heading">
+      <div>
+        <h3>${isCardEditing ? "Редактирование карточки" : "Предпросмотр карточки"}</h3>
+        <p>${isCardEditing ? "Можно изменить обе стороны. **Текст** выделит целевое слово." : "Содержимое можно изменить перед сохранением."}</p>
+      </div>
+      ${isCardEditing ? "" : `<button class="secondary-button compact-button" type="button" data-edit-card>Редактировать</button>`}
+    </div>
     <div class="card-switch" aria-label="Сторона карточки">
-      <button type="button" data-card-side="front" aria-pressed="${isFront}">Лицевая</button>
-      <button type="button" data-card-side="back" aria-pressed="${!isFront}">Обратная</button>
+      <button type="button" data-card-side="front" aria-pressed="${isFront}" ${isCardEditing ? "disabled" : ""}>Лицевая</button>
+      <button type="button" data-card-side="back" aria-pressed="${!isFront}" ${isCardEditing ? "disabled" : ""}>Обратная</button>
     </div>
     <section class="card-preview">
-      <span class="block-label">${isFront ? "Лицевая сторона" : "Обратная сторона"}</span>
-      <div class="card-sentence">${unit.sentenceMarked}</div>
-      ${isFront ? "" : `
-        <div class="card-sentence translation-line">${unit.translationMarked}</div>
-        <p class="card-explanation"><strong>${escapeHtml(unit.expression)}</strong> — ${escapeHtml(unit.definition)}</p>
-        <div class="card-examples">${unit.examples.map(pair => `${escapeHtml(pair[0])}<br>${escapeHtml(pair[1])}`).join("<br><br>")}</div>`}
-      <div class="audio-row">
-        <button class="audio-button" type="button" data-speak="${escapeHtml(unit.expression)}">Выражение</button>
-        ${isFront ? "" : `<button class="audio-button" type="button" data-speak="${escapeHtml(unit.sentence)}">Предложение</button>`}
-      </div>
-      <div class="audio-status" data-audio-status>Немецкий системный голос · de-DE</div>
+      ${isCardEditing ? `
+        <label class="card-editor-label" for="card-front-editor">Лицевая сторона</label>
+        <textarea class="card-editor" id="card-front-editor" rows="4">${escapeHtml(frontText)}</textarea>
+        <label class="card-editor-label" for="card-back-editor">Обратная сторона</label>
+        <textarea class="card-editor" id="card-back-editor" rows="10">${escapeHtml(backText)}</textarea>
+        <div class="editor-note" id="card-editor-note">Изменения хранятся локально в этом браузере.</div>
+      ` : `
+        <span class="block-label">${isFront ? "Лицевая сторона" : "Обратная сторона"}${hasEdits ? " · изменено вами" : ""}</span>
+        <div class="card-sentence card-user-content">${renderCardText(isFront ? frontText : backText)}</div>
+        <div class="audio-row">
+          <button class="audio-button" type="button" data-speak="${escapeHtml(unit.expression)}">Выражение</button>
+          ${isFront ? "" : `<button class="audio-button" type="button" data-speak="${escapeHtml(unit.sentence)}">Предложение</button>`}
+        </div>
+        <div class="audio-status" data-audio-status>Немецкий системный голос · de-DE</div>
+      `}
+      <a class="dictionary-link" href="${dictionaryUrl(unit)}" target="_blank" rel="noopener noreferrer" aria-label="Открыть ${escapeHtml(unit.expression)} в Wiktionary в новой вкладке">Открыть «${escapeHtml(unit.expression)}» в Wiktionary ↗</a>
     </section>
-    <p class="card-caption">Поля TargetAudio и SentenceAudio сохраняются отдельно.</p>
-    <div class="panel-actions">
-      <button class="secondary-button" type="button" data-next-stage="understand">← Назад</button>
-      <button class="primary-button" type="button" data-save-anki ${isSaved ? "disabled" : ""}>${isSaved ? "Сохранено в Anki demo ✓" : "Добавить в Anki demo"}</button>
-    </div>`;
+    ${isCardEditing ? `
+      <div class="panel-actions">
+        <button class="secondary-button" type="button" data-cancel-card-edit>Отмена</button>
+        ${hasEdits ? `<button class="secondary-button" type="button" data-reset-card>Вернуть исходное</button>` : ""}
+        <button class="primary-button" type="button" data-save-card-edit>Сохранить изменения</button>
+      </div>
+    ` : `
+      <p class="card-caption">Поля текста и аудио сохраняются отдельно.</p>
+      <div class="panel-actions">
+        <button class="secondary-button" type="button" data-next-stage="understand">← Назад</button>
+        <button class="primary-button" type="button" data-save-anki ${isSaved ? "disabled" : ""}>${isSaved ? "Сохранено в Anki demo ✓" : "Добавить в Anki demo"}</button>
+      </div>
+    `}`;
+}
+
+function saveCardEdits() {
+  const unit = getUnit();
+  const frontEditor = document.querySelector("#card-front-editor");
+  const backEditor = document.querySelector("#card-back-editor");
+  const front = frontEditor?.value.trim();
+  const back = backEditor?.value.trim();
+  if (!front || !back) {
+    const note = document.querySelector("#card-editor-note");
+    note.textContent = "Обе стороны должны содержать текст.";
+    note.classList.add("is-error");
+    (!front ? frontEditor : backEditor)?.focus();
+    return;
+  }
+  state.cardEdits ||= {};
+  state.cardEdits[unit.id] = { front, back };
+  isCardEditing = false;
+  saveState();
+  renderCard(unit);
+  showToast("Изменения карточки сохранены локально.");
+}
+
+function resetCardEdits() {
+  const unit = getUnit();
+  if (state.cardEdits?.[unit.id]) delete state.cardEdits[unit.id];
+  isCardEditing = false;
+  saveState();
+  renderCard(unit);
+  showToast("Восстановлен исходный текст карточки.");
 }
 
 function renderPractice(unit) {
@@ -537,6 +624,25 @@ panelContent.addEventListener("click", event => {
   if (sideButton) {
     state.cardSide = sideButton.dataset.cardSide;
     renderCard(getUnit());
+    return;
+  }
+  if (event.target.closest("[data-edit-card]")) {
+    isCardEditing = true;
+    renderCard(getUnit());
+    document.querySelector("#card-front-editor")?.focus();
+    return;
+  }
+  if (event.target.closest("[data-save-card-edit]")) {
+    saveCardEdits();
+    return;
+  }
+  if (event.target.closest("[data-cancel-card-edit]")) {
+    isCardEditing = false;
+    renderCard(getUnit());
+    return;
+  }
+  if (event.target.closest("[data-reset-card]")) {
+    resetCardEdits();
     return;
   }
   const stageButton = event.target.closest("[data-next-stage]");

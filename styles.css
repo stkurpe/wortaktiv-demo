@@ -30,12 +30,17 @@ body {
   background: var(--canvas);
 }
 
-button, input { font: inherit; }
+button, input, textarea { font: inherit; }
 
 button:focus-visible,
 [role="button"]:focus-visible,
 a:focus-visible,
 input:focus-visible {
+  outline: 3px solid rgba(11, 107, 87, 0.28);
+  outline-offset: 3px;
+}
+
+textarea:focus-visible {
   outline: 3px solid rgba(11, 107, 87, 0.28);
   outline-offset: 3px;
 }
@@ -132,6 +137,8 @@ input:focus-visible {
   color: #fff;
   background: var(--green);
 }
+
+button:disabled { cursor: default; opacity: .62; }
 
 .quiet-button { color: var(--muted); }
 
@@ -357,6 +364,16 @@ main { padding: 24px clamp(14px, 3vw, 34px) 40px; }
 .panel-content h3 { margin: 0 0 8px; font-size: 20px; }
 .panel-content > p { margin: 0 0 16px; color: var(--muted); line-height: 1.55; }
 
+.card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-heading p { margin: 0 0 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.compact-button { flex: 0 0 auto; min-height: 36px; }
+
 .info-block,
 .card-preview,
 .practice-block,
@@ -465,6 +482,50 @@ main { padding: 24px clamp(14px, 3vw, 34px) 40px; }
 .card-explanation { color: #f3f8f6; font-size: 13px; line-height: 1.55; }
 .card-examples { color: #7be0dc; font-size: 12px; line-height: 1.65; }
 .card-preview .audio-button { color: #c9f7e9; background: #244238; }
+
+.card-user-content {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.card-editor-label {
+  display: block;
+  margin: 0 0 6px;
+  color: #aab9b4;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .04em;
+}
+
+.card-editor {
+  display: block;
+  width: 100%;
+  margin: 0 0 14px;
+  padding: 11px 12px;
+  resize: vertical;
+  border: 1px solid #486159;
+  border-radius: 9px;
+  color: #f3f8f6;
+  background: #222b28;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.editor-note { margin-bottom: 14px; color: #aab9b4; font-size: 11px; }
+.editor-note.is-error { color: #ff9fc9; }
+
+.dictionary-link {
+  display: inline-flex;
+  margin-top: 14px;
+  color: #9de9d3;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.dictionary-link:hover { color: #d2fff2; }
 
 .practice-prompt { margin: 0 0 10px; line-height: 1.55; }
 
