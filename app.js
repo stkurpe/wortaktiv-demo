@@ -86,7 +86,7 @@ function createInitialState() {
     statsSort: "difficulty",
     activitySeconds: { understand: 39 * 60, card: 28 * 60, practice: 72 * 60, review: 22 * 60 },
     unitStats: {
-      anspruch: { timeSeconds: 520, attempts: 8, errors: 2, hints: 2, successes: 4, lapses: 1 },
+      anspruch: { timeSeconds: 900, attempts: 8, errors: 2, hints: 2, successes: 4, lapses: 1 },
       zuverlaessig: { timeSeconds: 205, attempts: 5, errors: 1, hints: 1, successes: 4, lapses: 0 },
       auseinandersetzen: { timeSeconds: 730, attempts: 8, errors: 5, hints: 4, successes: 2, lapses: 2 }
     }
@@ -150,7 +150,7 @@ function formatDuration(seconds, compact = false) {
   const minutes = Math.floor((value % 3600) / 60);
   const rest = value % 60;
   if (hours) return `${hours} ч ${minutes} мин`;
-  if (compact || minutes >= 10) return `${minutes} мин`;
+  if (compact) return `${minutes} мин`;
   return `${minutes} мин ${String(rest).padStart(2, "0")} с`;
 }
 
