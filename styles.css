@@ -516,16 +516,25 @@ main { padding: 24px clamp(14px, 3vw, 34px) 40px; }
 .editor-note.is-error { color: #ff9fc9; }
 
 .dictionary-link {
-  display: inline-flex;
-  margin-top: 14px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #abd9ca;
+  border-radius: 10px;
   color: var(--green-strong);
+  background: var(--green-soft);
   font-size: 12px;
   font-weight: 700;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-decoration: none;
 }
 
-.dictionary-link:hover { color: var(--green); }
+.dictionary-link > span:first-child { font-size: 16px; }
+.dictionary-link small { color: var(--muted); font-size: 10px; font-weight: 650; }
+.dictionary-link:hover { border-color: var(--green); background: #d2ede4; }
 
 .practice-prompt { margin: 0 0 10px; line-height: 1.55; }
 

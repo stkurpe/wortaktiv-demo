@@ -247,7 +247,11 @@ function renderUnderstand(unit) {
       <span class="block-label">Выбранное значение</span>
       <strong>${escapeHtml(unit.definition)}</strong>
       <span class="source-line"><span class="source-badge">Словарь</span>${escapeHtml(unit.source)}</span>
-      <a class="dictionary-link" href="${dictionaryUrl(unit)}" target="_blank" rel="noopener noreferrer" aria-label="Открыть ${escapeHtml(unit.expression)} в Wiktionary в новой вкладке">Открыть «${escapeHtml(unit.expression)}» в Wiktionary ↗</a>
+      <a class="dictionary-link" href="${dictionaryUrl(unit)}" target="_blank" rel="noopener noreferrer" aria-label="Открыть ${escapeHtml(unit.expression)} в Wiktionary в новой вкладке">
+        <span aria-hidden="true">↗</span>
+        <span>Открыть в онлайн-словаре</span>
+        <small>Wiktionary</small>
+      </a>
     </section>
     <section class="info-block">
       <span class="block-label">Немецкая модель</span>
