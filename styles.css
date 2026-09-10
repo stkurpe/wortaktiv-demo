@@ -182,6 +182,17 @@ button:disabled { cursor: default; opacity: .62; }
   font-size: 12px;
 }
 
+.production-progress {
+  padding: 6px 9px;
+  border: 1px solid #abd9ca;
+  border-radius: 999px;
+  color: var(--green-strong);
+  background: var(--green-soft);
+  font-size: 10px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
 .status-dot {
   width: 8px;
   height: 8px;
@@ -485,6 +496,65 @@ main { padding: 24px clamp(14px, 3vw, 34px) 40px; }
 .audio-button::before { content: "▶"; font-size: 10px; }
 
 .audio-status { min-height: 18px; margin-top: 7px; color: var(--muted); font-size: 11px; }
+
+.audio-library-demo {
+  display: grid;
+  gap: 10px;
+  margin-top: 13px;
+  padding: 12px;
+  border: 1px dashed #8ac7b4;
+  border-radius: 12px;
+  background: #f5fbf9;
+}
+
+.audio-library-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.audio-library-heading p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.audio-integrity-badge {
+  flex: none;
+  padding: 4px 7px;
+  border-radius: 999px;
+  color: var(--cyan);
+  background: var(--cyan-soft);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.audio-find-button { width: 100%; }
+.audio-search-label { color: var(--green-strong); font-size: 11px; font-weight: 750; }
+
+.audio-source-card {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 11px;
+}
+
+.audio-source-card.is-attached { border-color: #75bda5; background: #eaf8f3; }
+.audio-source-card span { color: var(--muted); line-height: 1.45; }
+.audio-source-card a { color: var(--green-strong); font-weight: 700; text-decoration: none; }
+.audio-source-card .secondary-button { width: 100%; }
+
+.card-preview .audio-library-demo { border-color: #486159; background: #202a27; }
+.card-preview .audio-library-heading p,
+.card-preview .audio-source-card span { color: #aab9b4; }
+.card-preview .audio-source-card { border-color: #486159; background: #26332f; }
+.card-preview .audio-source-card.is-attached { background: #203b33; }
+.card-preview .audio-source-card a { color: #9de6d0; }
 
 .card-switch { margin-bottom: 10px; }
 

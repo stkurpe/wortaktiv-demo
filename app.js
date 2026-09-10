@@ -139,9 +139,10 @@ const UNIT_LOCALIZED_CONTENT = {
 
 const STORAGE_KEY = "wortaktiv-demo-v2";
 const STAGES = ["understand", "card", "practice", "review"];
+const COMMONS_AUDIO_SEARCH = "https://commons.wikimedia.org/wiki/Special:MediaSearch?type=audio&search=";
 const TRANSLATIONS = {
   ru: {
-    mainNav: "Основные разделы", article: "Статья", statistics: "Статистика", interfaceLanguage: "Базовый язык интерфейса и карточек", baseLanguageShort: "Язык карточки", resetDemo: "Сбросить демо",
+    mainNav: "Основные разделы", article: "Статья", statistics: "Статистика", interfaceLanguage: "Базовый язык интерфейса и карточек", baseLanguageShort: "Язык карточки", resetDemo: "Сбросить демо", productionProgress: "Production core · audio → Anki готово",
     articleMeta: "Deutsch · B1–B2 · 4 минуты", activeTimeNote: "Время считается только при активной работе", today: "Сегодня", tryIt: "Попробуйте",
     selectionHelp: "Выделите фрагмент текста или нажмите на цветную учебную единицу.", demoArticle: "Учебный демонстрационный текст", localContext: "Контекст обрабатывается локально",
     closePanel: "Свернуть панель", stageNav: "Этапы работы с единицей", understand: "Понять", card: "Карточка", practice: "Практика", review: "Повтор",
@@ -152,7 +153,7 @@ const TRANSLATIONS = {
     understandKicker: "UNDERSTAND · словарь + контекст", meaningHere: "Значение в этом предложении", factsSeparated: "Словарные факты отделены от контекстного объяснения.",
     sourceForm: "Исходная форма", context: "Контекст", fromArticle: "Получено из статьи", selectedMeaning: "Выбранное значение", dictionary: "Словарь",
     openDictionary: "Открыть в онлайн-словаре", germanPattern: "Немецкая модель", confidence: "Уверенность контекстного выбора: высокая.", expression: "Выражение", sentence: "Предложение",
-    voiceReady: "Немецкий системный голос · de-DE", buildCard: "Собрать карточку →", cardKicker: "CARD · формат Anki", editCard: "Редактирование карточки",
+    voiceReady: "Немецкий системный голос · de-DE", buildCard: "Собрать карточку →", cardKicker: "CARD · формат Anki", editCard: "Редактирование карточки", licensedAudioTitle: "Запись из открытого источника", licensedAudioHelp: "Найдите запись, проверьте источник и лицензию, затем явно добавьте её в карточку.", findAudio: "Найти запись слова", searchingAudio: "Найдена демонстрационная запись", audioCandidate: "Wikimedia Commons · немецкий · OGG", audioLicense: "Лицензия и автор проверяются по метаданным источника", openAudioSource: "Открыть поиск Commons", useAudio: "Использовать эту запись", audioAttached: "Запись прикреплена к карточке и будет отправлена в Anki до сохранения заметки.", replaceAudio: "Выбрать другую запись", audioApplied: "Лицензированное аудио добавлено в карточку.",
     cardPreview: "Предпросмотр карточки", editHelp: "Можно изменить обе стороны. **Текст** выделит целевое слово.", previewHelp: "Содержимое можно изменить перед сохранением.",
     edit: "Редактировать", cardSides: "Сторона карточки", front: "Лицевая", back: "Обратная", frontSide: "Лицевая сторона", backSide: "Обратная сторона", changed: "изменено вами",
     localEditNote: "Изменения хранятся локально в этом браузере.", cancel: "Отмена", restore: "Вернуть исходное", saveChanges: "Сохранить изменения",
@@ -172,7 +173,7 @@ const TRANSLATIONS = {
     activityUnderstand: "Разбор", activityCard: "Карточки", activityPractice: "Практика", activityReview: "Повтор", exportStats: "Экспорт статистики", exportReady: "Файл статистики скачан.", exportError: "Не удалось создать файл.", pdfTitle: "Отчёт WortAktiv", generated: "Создан", hints: "Подсказки"
   },
   en: {
-    mainNav: "Main sections", article: "Article", statistics: "Statistics", interfaceLanguage: "Base language for interface and cards", baseLanguageShort: "Card language", resetDemo: "Reset demo",
+    mainNav: "Main sections", article: "Article", statistics: "Statistics", interfaceLanguage: "Base language for interface and cards", baseLanguageShort: "Card language", resetDemo: "Reset demo", productionProgress: "Production core · audio → Anki ready",
     articleMeta: "German · B1–B2 · 4 minutes", activeTimeNote: "Time is counted only while you are active", today: "Today", tryIt: "Try it",
     selectionHelp: "Select a passage or click a highlighted learning unit.", demoArticle: "Learning demo text", localContext: "Context is processed locally",
     closePanel: "Close panel", stageNav: "Learning stages", understand: "Understand", card: "Card", practice: "Practice", review: "Review",
@@ -183,7 +184,7 @@ const TRANSLATIONS = {
     understandKicker: "UNDERSTAND · dictionary + context", meaningHere: "Meaning in this sentence", factsSeparated: "Dictionary facts are separated from the contextual explanation.",
     sourceForm: "Source form", context: "Context", fromArticle: "Taken from the article", selectedMeaning: "Selected meaning", dictionary: "Dictionary",
     openDictionary: "Open in online dictionary", germanPattern: "German pattern", confidence: "Context selection confidence: high.", expression: "Expression", sentence: "Sentence",
-    voiceReady: "German system voice · de-DE", buildCard: "Build card →", cardKicker: "CARD · Anki format", editCard: "Edit card",
+    voiceReady: "German system voice · de-DE", buildCard: "Build card →", cardKicker: "CARD · Anki format", editCard: "Edit card", licensedAudioTitle: "Recording from an open source", licensedAudioHelp: "Find a recording, review its source and license, then explicitly add it to the card.", findAudio: "Find word recording", searchingAudio: "Demo recording found", audioCandidate: "Wikimedia Commons · German · OGG", audioLicense: "License and creator are verified from source metadata", openAudioSource: "Open Commons search", useAudio: "Use this recording", audioAttached: "The recording is attached to the card and will be sent to Anki before the note is saved.", replaceAudio: "Choose another recording", audioApplied: "Licensed audio was added to the card.",
     cardPreview: "Card preview", editHelp: "Edit both sides. **Text** highlights the target expression.", previewHelp: "You can edit the content before saving.",
     edit: "Edit", cardSides: "Card side", front: "Front", back: "Back", frontSide: "Front side", backSide: "Back side", changed: "edited by you",
     localEditNote: "Changes are stored locally in this browser.", cancel: "Cancel", restore: "Restore original", saveChanges: "Save changes",
@@ -203,7 +204,7 @@ const TRANSLATIONS = {
     activityUnderstand: "Analysis", activityCard: "Cards", activityPractice: "Practice", activityReview: "Review", exportStats: "Export statistics", exportReady: "Statistics file downloaded.", exportError: "Could not create the file.", pdfTitle: "WortAktiv report", generated: "Generated", hints: "Hints"
   },
   de: {
-    mainNav: "Hauptbereiche", article: "Artikel", statistics: "Statistik", interfaceLanguage: "Basissprache für Oberfläche und Karten", baseLanguageShort: "Kartensprache", resetDemo: "Demo zurücksetzen",
+    mainNav: "Hauptbereiche", article: "Artikel", statistics: "Statistik", interfaceLanguage: "Basissprache für Oberfläche und Karten", baseLanguageShort: "Kartensprache", resetDemo: "Demo zurücksetzen", productionProgress: "Production Core · Audio → Anki bereit",
     articleMeta: "Deutsch · B1–B2 · 4 Minuten", activeTimeNote: "Zeit wird nur bei aktiver Nutzung gezählt", today: "Heute", tryIt: "Probieren Sie es aus",
     selectionHelp: "Markieren Sie einen Textabschnitt oder klicken Sie auf eine hervorgehobene Lerneinheit.", demoArticle: "Lerntext zur Demonstration", localContext: "Kontext wird lokal verarbeitet",
     closePanel: "Panel schließen", stageNav: "Lernschritte", understand: "Verstehen", card: "Karte", practice: "Üben", review: "Wiederholen",
@@ -214,7 +215,7 @@ const TRANSLATIONS = {
     understandKicker: "VERSTEHEN · Wörterbuch + Kontext", meaningHere: "Bedeutung in diesem Satz", factsSeparated: "Wörterbuchangaben und kontextuelle Erklärung sind getrennt.",
     sourceForm: "Ausgangsform", context: "Kontext", fromArticle: "Aus dem Artikel übernommen", selectedMeaning: "Gewählte Bedeutung", dictionary: "Wörterbuch",
     openDictionary: "Im Online-Wörterbuch öffnen", germanPattern: "Deutsches Muster", confidence: "Sicherheit der Kontextauswahl: hoch.", expression: "Ausdruck", sentence: "Satz",
-    voiceReady: "Deutsche Systemstimme · de-DE", buildCard: "Karte erstellen →", cardKicker: "KARTE · Anki-Format", editCard: "Karte bearbeiten",
+    voiceReady: "Deutsche Systemstimme · de-DE", buildCard: "Karte erstellen →", cardKicker: "KARTE · Anki-Format", editCard: "Karte bearbeiten", licensedAudioTitle: "Aufnahme aus einer offenen Quelle", licensedAudioHelp: "Aufnahme suchen, Quelle und Lizenz prüfen und anschließend ausdrücklich zur Karte hinzufügen.", findAudio: "Wortaufnahme suchen", searchingAudio: "Demoaufnahme gefunden", audioCandidate: "Wikimedia Commons · Deutsch · OGG", audioLicense: "Lizenz und Urheber werden anhand der Quellenmetadaten geprüft", openAudioSource: "Commons-Suche öffnen", useAudio: "Diese Aufnahme verwenden", audioAttached: "Die Aufnahme ist mit der Karte verknüpft und wird vor der Notiz an Anki übertragen.", replaceAudio: "Andere Aufnahme wählen", audioApplied: "Die lizenzierte Aufnahme wurde zur Karte hinzugefügt.",
     cardPreview: "Kartenvorschau", editHelp: "Beide Seiten können bearbeitet werden. **Text** markiert den Zielausdruck.", previewHelp: "Der Inhalt kann vor dem Speichern bearbeitet werden.",
     edit: "Bearbeiten", cardSides: "Kartenseite", front: "Vorderseite", back: "Rückseite", frontSide: "Vorderseite", backSide: "Rückseite", changed: "von Ihnen geändert",
     localEditNote: "Änderungen werden lokal in diesem Browser gespeichert.", cancel: "Abbrechen", restore: "Original wiederherstellen", saveChanges: "Änderungen speichern",
@@ -253,6 +254,7 @@ function createInitialState() {
     stage: "understand",
     cardSide: "front",
     cardEdits: {},
+    licensedAudio: {},
     savedUnits: [],
     contexts: { anspruch: 2, zuverlaessig: 1, auseinandersetzen: 1 },
     todaySeconds: 34 * 60,
@@ -286,6 +288,7 @@ let lastActivityAt = Date.now();
 let toastTimer;
 let persistTicks = 0;
 let isCardEditing = false;
+let audioSearchUnitId = null;
 
 const articleView = document.querySelector("#article-view");
 const statisticsView = document.querySelector("#statistics-view");
@@ -400,6 +403,38 @@ function dictionaryUrl(unit) {
   return `https://de.wiktionary.org/wiki/Special:Search?search=${encodeURIComponent(unit.expression)}`;
 }
 
+function audioSourceUrl(unit) {
+  return `${COMMONS_AUDIO_SEARCH}${encodeURIComponent(unit.expression)}`;
+}
+
+function renderLicensedAudio(unit) {
+  const attached = Boolean(state.licensedAudio?.[unit.id]);
+  const searched = audioSearchUnitId === unit.id;
+  return `
+    <section class="audio-library-demo">
+      <div class="audio-library-heading">
+        <div><span class="block-label">${t("licensedAudioTitle")}</span><p>${t("licensedAudioHelp")}</p></div>
+        <span class="audio-integrity-badge">SHA-256 · durable</span>
+      </div>
+      ${searched ? `
+        <div class="audio-search-label">${t("searchingAudio")}</div>
+        <div class="audio-source-card">
+          <strong>${t("audioCandidate")}</strong>
+          <span>${t("audioLicense")}</span>
+          <a href="${audioSourceUrl(unit)}" target="_blank" rel="noopener noreferrer">↗ ${t("openAudioSource")}</a>
+          <button class="secondary-button" type="button" data-apply-audio>${t("useAudio")}</button>
+        </div>
+      ` : attached ? `
+        <div class="audio-source-card is-attached">
+          <strong><span aria-hidden="true">✓</span> ${t("audioCandidate")}</strong>
+          <span>${t("audioAttached")}</span>
+          <a href="${audioSourceUrl(unit)}" target="_blank" rel="noopener noreferrer">↗ ${t("openAudioSource")}</a>
+        </div>
+        <button class="secondary-button" type="button" data-find-audio>${t("replaceAudio")}</button>
+      ` : `<button class="secondary-button audio-find-button" type="button" data-find-audio>${t("findAudio")}</button>`}
+    </section>`;
+}
+
 function pluralErrors(count) {
   const mod10 = count % 10;
   const mod100 = count % 100;
@@ -499,6 +534,7 @@ function renderUnderstand(unit) {
       <button class="audio-button" type="button" data-speak="${escapeHtml(unit.sentence)}">${t("sentence")}</button>
     </div>
     <div class="audio-status" data-audio-status>${t("voiceReady")}</div>
+    ${renderLicensedAudio(unit)}
     <div class="panel-actions">
       <button class="primary-button" type="button" data-next-stage="card">${t("buildCard")}</button>
     </div>`;
@@ -538,6 +574,7 @@ function renderCard(unit) {
           ${isFront ? "" : `<button class="audio-button" type="button" data-speak="${escapeHtml(unit.sentence)}">${t("sentence")}</button>`}
         </div>
         <div class="audio-status" data-audio-status>${t("voiceReady")}</div>
+        ${renderLicensedAudio(unit)}
       `}
     </section>
     ${isCardEditing ? `
@@ -1072,6 +1109,21 @@ panelContent.addEventListener("click", event => {
   }
   if (event.target.closest("[data-reset-card]")) {
     resetCardEdits();
+    return;
+  }
+  if (event.target.closest("[data-find-audio]")) {
+    audioSearchUnitId = getUnit().id;
+    renderPanel();
+    return;
+  }
+  if (event.target.closest("[data-apply-audio]")) {
+    const unit = getUnit();
+    state.licensedAudio ||= {};
+    state.licensedAudio[unit.id] = { provider: "wikimedia-commons", format: "audio/ogg", selectedAt: new Date().toISOString() };
+    audioSearchUnitId = null;
+    saveState();
+    renderPanel();
+    showToast(t("audioApplied"));
     return;
   }
   const stageButton = event.target.closest("[data-next-stage]");

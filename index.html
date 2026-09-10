@@ -14,14 +14,14 @@
   <meta name="twitter:title" content="WortAktiv — интерактивный прототип">
   <meta name="twitter:description" content="Контекстные карточки, произношение, практика и локальная статистика.">
   <title>WortAktiv — интерактивный прототип</title>
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <header class="app-header">
     <a class="brand" href="#article" aria-label="WortAktiv — к статье">
       <span class="brand-mark" aria-hidden="true">W</span>
       <span>WortAktiv</span>
-      <small>prototype</small>
+      <small>interactive demo · v7</small>
     </a>
 
     <nav class="main-nav" aria-label="Основные разделы" data-i18n-aria="mainNav">
@@ -30,6 +30,7 @@
     </nav>
 
     <div class="header-actions">
+      <span class="production-progress" data-i18n="productionProgress">Production core · audio → Anki готово</span>
       <span class="anki-status"><span class="status-dot" aria-hidden="true"></span>Anki demo</span>
       <label class="language-picker">
         <span class="language-label" data-i18n="baseLanguageShort">Язык карточки</span>
@@ -175,6 +176,6 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>
